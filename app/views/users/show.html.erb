@@ -1,0 +1,66 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Users listing", users_path %>
+  |
+  <%= link_to "Back", :back %>
+</div>
+
+<div class="header">
+  <span class="title">
+    <%=h @user.number_string%> 
+  </span>
+  <span class="edit_link">
+    (<%= link_to 'edit', edit_user_path(@user) %>)
+  </span>
+</div>
+
+<div style="font-weight:bold; font-size:24px; margin-top: 8px;">
+  <%=h @user.name %> 
+</div>
+
+<% unless @user.apartment.nil? %>
+  <div style="margin-bottom: 18px;">
+    apartment: <%= link_to @user.apartment.address, @user.apartment %>,
+    room: <%= @user.room %>
+  </div>
+<% end %>
+
+<% unless @user.apt_queries_ordered.empty? %>
+  <%= link_to_function ("Apartment queries", visual_effect(:toggle_slide,
+  "apt_q", :duration => 0.2)) %>
+  <div id="apt_q" style="display:none;">
+  <div>
+    <div class="detail_text">showing up to last 50</div>
+    <% @user.apt_queries_ordered.each do |q| %>
+      <div class="apt_query">
+        <%=link_to q.apartment.address, q.apartment %>
+        <span style="font-size: 12px; font-style: italic;">
+          on <%= q.datetime_string %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+  </div>
+  <br/>
+<% end %>
+
+
+<% unless @user.callbacks_ordered.empty? %>
+  <%= link_to_function ("Call back requests", visual_effect(:toggle_slide,
+  "callbacks", :duration => 0.2)) %>
+  <div id="callbacks" style="display:none;">
+  <div>
+    <div class="detail_text">showing up to last 50</div>
+    <% @user.callbacks_ordered.each do |cb| %>
+      <div class="apt_query">
+        <%=link_to cb.apartment.address, cb.apartment %>
+        <span style="font-size: 12px; font-style: italic;">
+          on <%= cb.datetime_string %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,29 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+</div>
+
+<h1>Admin page</h1>
+
+
+<div class="link_block">
+  »<%= link_to "SMS in/out log", :action => 'all_msg_log' %>
+</div>
+
+<i>advanced logs</i>
+<div class="link_block">
+  »<%= link_to "SMS server: status", :action => 'server_status' %>
+  <br/>
+  »<%= link_to "SMS server: modem.log", :action => 'modem_log' %>
+</div>
+  
+<i>advanced actions</i>
+<div class="link_block">
+  »<%= link_to "restart SMS server", {:action => 'restart_server'}, 
+   :confirm => 'Are you sure you want to restart the SMS server?' %>
+  <br/>
+  »<%= link_to "change modem phone number", :action=>'modem_number' %>
+  <br/>
+  »<%= link_to "backup/restore db (phpMyAdmin)",
+  "/phpmyadmin/index.php" %>
+</div>
+  

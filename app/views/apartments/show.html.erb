@@ -1,0 +1,136 @@
+
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Property listing", apartments_path %>
+</div>
+
+<div class="header">
+  <span class="title">
+    <%=h @apartment.address %>
+  </span>
+  <span class="edit_link">
+    (<%= link_to 'edit', edit_apartment_path(@apartment) %>)
+  </span>
+</div>
+
+<p>
+  <b>Keyword:</b>
+  <%=h @apartment.keyword %>
+  <br/>
+</p>
+
+
+
+<div>
+  <b>Current status:</b>
+  <br/>
+  <div id="current_status">
+    <%= link_to_function (@apartment.current_status.message_html, visual_effect(:toggle_slide,
+    "update_status", :duration => 0.2)) %>
+  </div>
+  <div class="helper_text">
+    Click the current status to update it.
+  </div>
+</div>
+
+<br/>
+
+<div id="update_status" style="display:none;">
+<div>
+  You have used <span id="counter">...</span> characters.
+  <% form_for @new_status, :url => new_status_path(@apartment) do |s| %>
+    <%= s.text_area :message, :rows => 5 %>
+    <br/>
+    <%= s.submit 'update status' %>
+  <% end %>
+  <%= count_field('apartment_status_message','counter') %>
+  <br/>
+</div>
+</div>
+
+
+
+<% unless @apartment.pics.empty? or @apartment.pcb_disabled %>
+  <%= link_to_function ("Pictures", visual_effect(:toggle_slide,
+  "pictures", :duration => 0.2)) %>
+  <div id="pictures" style="display:none;">
+  <div>
+      <% @apartment.pics.each do |p| %>
+          <%= link_to_function (p.url, "$('" + p.url + "').toggle();") %><br/>
+          <div id="<%= p.url %>" style="display:none;">
+            <%= image_tag(p.full_url) %>
+          </div>
+      <% end %> 
+  </div>
+  </div>
+  <br/>
+<% end %>
+
+<% unless @apartment.past_statuses.empty? %>
+  <%= link_to_function ("Past statuses", visual_effect(:toggle_slide, "past_statuses",
+  :duration => 0.2)) %>
+  <div id="past_statuses" style="display:none;">
+  <div>
+    <div class="detail_text"> showing last 15 </div>
+    <% @apartment.past_statuses.each do |ps| %>
+      <div class="past_status" >
+        <div class="past_status_header" >
+          on <%=h ps.datetime_string %>
+          <%= link_to_function "use as current status",
+          "fill_status_box('update_status', 'apartment_status_message',
+          'past_statuses', '" + 
+          escape_javascript(ps.message) + "')" %>
+        </div>
+        <%= ps.message_html%>
+      </div>
+    <% end %> 
+  </div>
+  </div>
+  <br/>
+<% end %>
+
+<% unless @apartment.callbacks.empty? or @apartment.pcb_disabled %>
+  <%= link_to_function ("Call back requests", visual_effect(:toggle_slide,
+  "callback_requests", :duration => 0.2)) %>
+
+  <div id="callback_requests" style="display:none;">
+  <div>
+    <div class="detail_text"> showing only pending 
+    (<%= link_to "view all", apartment_callbacks_path(@apartment) %>) </div>
+    <% @apartment.callbacks_outstanding_ordered.each do |cb| %>
+      <div id="cb_<%=cb.id.to_s%>">
+        <%= render :partial => 'callback', :locals => {:cb => cb} %> 
+      </div>
+    <% end %> 
+  </div>
+  </div>
+  <br/>
+<% end %>
+
+
+<% unless @apartment.queries_ordered.empty? %>
+  <%= link_to_function ("Query log", 
+  visual_effect(:toggle_slide, "query_log", :duration => 0.2)) %>
+
+  <div id="query_log" style="display:none;">
+  <div>
+    <div class="detail_text">
+      <%= link_to"send message", {:action => "recent_people"} %>
+    </div>
+    <div class="detail_text"> showing last 15 </div>
+    <% @apartment.queries_ordered.each do |q| %>
+      <div class="apt_query" > 
+        <div class="apt_query_header" >
+          on <%= q.datetime_string %>
+        </div>
+        <%= q.user.name_string %>
+        (<%= link_to q.user.number_string, q.user%>)
+      </div>
+    <% end %> 
+  </div>
+  </div>
+
+<% end %>
+
+

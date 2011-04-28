@@ -1,0 +1,46 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'Back to "' + @list.name + '"', @list %>
+</div>
+
+<h2>Add a new user to <%=@list.name%></h2>
+
+<% form_for :user, :url => 
+{:controller => 'lists', :action => 'add_new_user', 
+:list_id => @list} do |f| %>
+  <%= f.error_messages %>
+
+  <div class="form_element">
+    <%= f.label :number %><br />
+    <%= text_field_tag "num1", nil, :size => 3,
+    :maxlength => 3 %> -
+    <%= text_field_tag "num2", nil, :size => 3,
+    :maxlength => 3 %> -
+    <%= text_field_tag "num3", nil, :size => 4,
+    :maxlength => 4 %>
+    <div class="helper_text">
+      Enter number like "217-333-4444"
+    </div>
+  </div>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :apartment_id %><br />
+    <%= f.collection_select :apartment_id, Apartment.all, :id, :address %>
+  </p>
+
+  <p>
+    <%= f.label :room, "Room Number" %><br />
+    <%= f.text_field :room%>
+  </p>
+
+  <div class="form_element">
+    <%= f.submit 'Create', :class => "submit_button" %>
+  </div>
+<% end %>
+

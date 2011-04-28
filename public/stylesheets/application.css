@@ -1,0 +1,368 @@
+body {
+  background-color: #4B7399;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+a img {
+  border: none;
+}
+
+a {
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+  min-width: 683px;
+}
+
+#flash_notice, #flash_error {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+.fieldWithErrors {
+  display: inline;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 8px;
+}
+
+#errorExplanation ul {
+  margin: 2px 24px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: disc;
+}
+
+.question {
+  background-color: #E8E8E8 ;
+  margin: 6px;
+  padding: 5px;
+}
+
+.helper_text {
+  color: #757575;
+  margin-top: 3px;
+  width: 50%;
+}
+
+.form_element { 
+  margin-top: 25px;
+  margin-bottom: 28px;
+}
+
+.submit_button {
+    border: 1px solid #006;
+    background: #9cf;
+    font-size: 15px;
+    width: 80px;
+}
+
+.danger_button {
+    border: 1px solid #006;
+    background: #DF0101;
+    font-size: 15px;
+    width: 80px;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.danger_button a {
+    text-decoration: none;
+    color: black;
+}
+
+#main-title {
+  font-size: 57px;
+  font-weight: bold;
+  height: 83px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.links {
+position: relative;
+left: 100px;
+font-size: 25px;
+line-height: 50px;
+}
+
+.apt_cb_comp {
+  background-color: #E8E8E8 ;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 5px;
+  width: 33em;
+}
+
+.apt_cb_uncomp {
+  background-color: #FFA2A2;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 5px;
+  width: 33em;
+}
+
+.apt_cb_msg {
+  padding-left: 5px;
+  font-size: 11px;
+}
+
+.past_status {
+  background-color: #E8E8E8 ;
+  margin: 10px;
+  padding: 5px;
+  width: 45%;
+}
+
+.past_status_header {
+  font-style: italic; 
+  font-size: 12px;
+  padding-bottom: 2px;
+}
+
+.apt_query {
+  background-color: #E8E8E8 ;
+  margin: 6px;
+  padding: 5px; 
+  width: 45%;
+}
+
+.apt_query_header {
+  font-style: italic; 
+  font-size: 12px;
+  padding-bottom: 2px;
+}
+
+.apt{
+  background-color: #E8E8E8 ;
+  margin: 6px;
+  padding: 5px;
+  font-size: 16px;
+  width: 45%;
+}
+
+.small_header {
+  font-style: italic; 
+  font-size: 12px;
+  padding-bottom: 2px;
+}
+
+#nav {
+  margin-bottom: 5px;
+  width: 100%;
+  background-color: #F2F2F2;
+  padding: 4px;
+  border: 1px;
+  border-style: inset;
+}
+
+.ques_choices {
+  margin-left: 5px;
+}
+
+.ques_choice_val {
+  margin-left: 5px;
+}
+
+.user {
+  background-color: #E8E8E8 ;
+  margin: 6px;
+  padding: 5px; 
+  width: 45%;
+}
+
+.header {
+  margin-top: 20px;
+}
+
+
+#current_status {
+  border:1px inset;
+  margin:7px;
+  padding:3px;
+  width:34%;
+}
+
+#user_search{
+  border: 1px inset;
+  padding:7px;
+  width:20em;
+  left:6px;
+  position:relative;
+  top:-7px;
+}
+
+#apt_send_msg_cal{
+  border: 1px inset;
+  position: relative;
+  left: 10px;
+  padding:7px;
+  width:44em;
+  margin-bottom:10px;
+}
+
+
+#callback_requests{
+  margin-left: 6px; 
+}
+
+#license-info {
+  text-align: center;
+  margin: 10px;
+  line-height: 10px;
+}
+
+.validation-error{
+  padding: 2px;
+  border: 2px solid #FF4040;
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #FF4040;
+  padding: 7px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #FF4040;
+  color: #fff;
+}
+
+#pending_callback_indic { 
+  background-color:#CCFFCC;
+  border:1px solid #66CC66;
+  font-size:19px;
+  left:46px;
+  line-height:30px;
+  padding-left:30px;
+  position:relative;
+  width:17em;
+}
+
+.sms_in {
+  background-color: #81BEF7;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 5px;
+  width: 43em;
+}
+
+.sms_out {
+  background-color: #FFA2A2;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding: 5px;
+  width: 38em;
+}
+
+.sms_head_text{
+  left: 26px;
+  position: relative;
+  top: -21px;
+}
+
+.sms_head{
+  height: 25px;
+  font-weight: bold;
+  position: relative;
+}
+
+.sms_head_holder{
+  height: 92px;
+  margin-top: 15px;
+}
+
+.detail_text{
+  font-style: italic;
+  font-size: 12px;
+  margin-left: 14px;
+}
+
+.link_block{
+  background-color:#F2F2F2;
+  font-size:19px;
+  line-height:34px;
+  margin-bottom:28px;
+  width:419px;
+}
+
+#recent_people_msg_box {
+  margin: 16px;
+}
+
+.recent_person {
+  background-color:#F2F2F2;
+  margin: 3px;
+  width: 25em;
+}
+
+#recent_people_holder {
+  border:2px solid;
+  left:40px;
+  padding:15px;
+  position:relative;
+  width:46em;
+}

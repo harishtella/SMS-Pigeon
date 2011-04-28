@@ -1,12 +1,16 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+#require 'gruff'
 
 Rails::Initializer.run do |config|
+
+  config.load_paths << File.join(Rails.root, "app", "classes")
+  config.eager_load_paths << File.join(Rails.root, "app", "classes")  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -14,6 +18,25 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
+  config.gem "calendar_date_select"
+  config.gem "ar-extensions"
+  
+
+  config.after_initialize do 
+  ActionView::Base.field_error_proc = Proc.new do |html_tag, instance| 
+    if (html_tag.slice(1,5) == "label")
+      html_tag
+    else 
+      if instance.error_message.kind_of?(Array)  
+        %(#{html_tag}&nbsp;<span class="validation-error">  
+          #{instance.error_message.join(',')}</span>)  
+      else  
+        %(#{html_tag}&nbsp;<span class="validation-error">  
+        #{instance.error_message}</span>)  
+      end 
+    end
+  end 
+  end
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
@@ -33,9 +56,10 @@ Rails::Initializer.run do |config|
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
-  config.time_zone = 'UTC'
-
+  config.time_zone = 'Central Time (US & Canada)'
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+
+
 end

@@ -1,0 +1,29 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Property listing", apartments_path %>
+  |
+  <%= link_to "Back", :back %>
+</div>
+
+<div class="header">
+  <span class="title">
+    Pending call back requests
+  </span>
+  <h3>
+    <%= @callbacks.size %> outstanding requests 
+    <% unless @callbacks.size.eql? 0 %>
+      (<%= link_to "complete all", complete_all_path, 
+      :confirm => "Are you sure?"%>)
+    <% end %>
+  </h3>
+</div>
+
+<div id="callback_requests">
+  <% @callbacks.each do |cb| %>
+    <div id="cb_<%=cb.id.to_s%>">
+      <%= render :partial => 'callbacks/callback', :locals => {:cb => cb} %> 
+    </div>
+  <% end %> 
+</div>
+

@@ -1,0 +1,19 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'New poll', new_poll_path %>
+</div>
+
+
+<h1>Polls</h1>
+
+<% @polls.each do |poll| %>
+  <div class="apt">
+    <div class="small_header">
+      keyword: <%=link_to poll.keyword, poll %>
+    </div>
+    <div class="apt_add">
+      <%= poll.title %>
+    </div>
+  </div>
+<% end %>

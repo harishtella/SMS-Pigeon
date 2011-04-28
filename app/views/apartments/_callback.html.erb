@@ -1,0 +1,16 @@
+<div class="<%= if cb.completed then "apt_cb_comp" else "apt_cb_uncomp" end %>">
+  <%= cb.user.name_string %>
+  (<%=link_to cb.user.number_string, cb.user %>)
+  <span style="font-style: italic; font-size:12px;">on <%=h cb.datetime_string %></span>
+  <%= if cb.completed then 
+  (link_to_remote "uncomplete", :update => "cb_"+cb.id.to_s, 
+  :url => callback_uncomplete_path(cb)) else 
+  (link_to_remote "complete", :update => "cb_"+cb.id.to_s, 
+  :url =>  callback_complete_path(cb)) end %>
+  <br/>
+  <div class="apt_cb_msg">
+    <span>message: </span>
+    <%=h cb.message %>
+  </div>
+</div>
+

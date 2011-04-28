@@ -1,0 +1,38 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Add new user to list", :controller => "lists",
+  :action => "user_new" %>
+  |
+  <%= link_to "Back", :back %>
+</div>
+
+<h2>Add user to <%=@list.name%></h2>
+
+<div id="user_search">
+  <% form_tag(user_list_for_add_path, :method => 'get') do %>
+    <div style="padding-bottom: 4px">
+      <%= label_tag 'search', 'search by: ' %>
+      <%= label_tag 'search_type_name', 'name' %>
+      <%= radio_button_tag 'search_type', 'name', @name_selected %>
+      <%= label_tag 'search_type_phone', 'phone #' %>
+      <%= radio_button_tag 'search_type', 'phone', (not @name_selected) %>
+    </div>
+    <div>
+      <%= text_field_tag 'search', params[:search] %>
+      <%= submit_tag 'Search', :name => nil %>
+    </div>
+  <% end %>
+</div>
+
+<% @users.each do |u| %>
+  <div class="user">
+    <span style="font-size: 16px;">
+      <%= u.name_string %>
+      (<%= link_to "add", add_user_to_list_path(:user_id => u, :list_id => @list) %>)
+    </span>
+    <br/>
+    <%=link_to u.number_string, u %>
+  </div>
+<% end %>
+

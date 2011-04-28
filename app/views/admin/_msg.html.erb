@@ -1,0 +1,14 @@
+<div class="<%= if m.incoming then "sms_in" else "sms_out" end %>">
+  <span style="font-style: italic; font-size:12px;">on <%=h m.datetime_string %></span>
+  <br/>
+  <div class="apt_cb_msg">
+    <span><b>people: </b></span>
+    <% m.users.each do |u| %>
+      <%= u.name_string %> (<%= link_to u.number_string, u %>),
+    <% end %>
+    <br/>
+    <span><b>message: </b></span>
+    <%=h m.text %>
+  </div>
+</div>
+

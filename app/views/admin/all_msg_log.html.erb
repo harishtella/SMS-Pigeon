@@ -1,0 +1,65 @@
+<%= calendar_date_select_includes "silver" %>
+
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Admin page", :controller => "admin", :action => "index" %>
+</div>
+
+<div class="header">
+  <span class="title">
+    SMS in/out log  
+  </span>
+
+  <div class="sms_head_holder">
+    <div class="sms_head">
+      <div style="width: 20px; height: 20px; background: #81BEF7;">&nbsp;</div>
+      <div class="sms_head_text">
+        -
+        <%= @msgs_in_size %> incoming  
+      </div>
+    </div>
+    <div class="sms_head">
+      <div style="width: 20px; height: 20px; background: #FFA2A2;">&nbsp;</div>
+      <div class="sms_head_text">
+        - 
+        <%= @msgs_out_size %> outgoing  
+      </div>
+    </div>
+    <div class="sms_head" style="left: 5px;">
+      sms messages between <%= @s.strftime(@time_string) %> and <%=
+      @e.strftime(@time_string) %>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="user_search">
+  <% form_tag(:action => 'all_msg_log', 
+  :method => 'get') do %>
+    <%= label_tag 's_date', 'start date: ' %>
+    <%= calendar_date_select_tag :s_date, @s_date, 
+    :month_year => "label", 
+    :popup => :force, :valid_date_check => 
+    "date <= (new Date()).stripTime()",
+    :clear_button => false %>
+    <br/>
+    <%= label_tag 'e_date', 'end date:   ' %>
+    <%= calendar_date_select_tag :e_date, @e_date, 
+    :month_year => "label", 
+    :popup => :force, :valid_date_check => 
+    "date <= (new Date()).stripTime()",
+    :clear_button => false %>
+    <%= submit_tag 'Search', :name => nil %>
+  <% end %>
+</div>
+
+<div id="callback_requests">
+  <% @msgs.each do |m| %>
+    <div id="m_<%=m.id.to_s%>">
+      <%= render :partial => 'msg', :locals => {:m => m} %> 
+    </div>
+  <% end %> 
+</div>
+

@@ -1,0 +1,90 @@
+<%= calendar_date_select_includes "silver" %>
+
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Property listing", apartments_path %>
+  |
+  <%= link_to "Back", @apartment %>
+</div>
+
+<div class="header">
+  <span class="title">
+    <%=h @apartment.address %>
+  </span>
+</div>
+
+<div style="font-weight: bold; font-size: 15px;
+margin-top: 5px; margin-bottom: 20px;" >
+  sending a message to people interested in this property   
+</div>
+
+<div class="helper_text" style="margin-bottom:15px; margin-left: 40px;">
+  Find people who inquired about this propery 
+</div>
+
+<div id="recent_people_holder">
+  <div id="apt_send_msg_cal">
+    <% form_tag(:action => 'recent_people', 
+    :method => 'get') do %>
+      <%= label_tag 's_date', 'start date: ' %>
+      <%= calendar_date_select_tag :s_date, @s_date, 
+      :month_year => "label", 
+      :popup => :force, :valid_date_check => 
+      "date <= (new Date()).stripTime()",
+      :clear_button => false %>
+      <%= label_tag 'e_date', 'end date:   ' %>
+      <%= calendar_date_select_tag :e_date, @e_date, 
+      :month_year => "label", 
+      :popup => :force, :valid_date_check => 
+      "date <= (new Date()).stripTime()",
+      :clear_button => false %>
+      <%= submit_tag 'Search', :name => nil %>
+    <% end %>
+  </div>
+
+  <div id="recent_peeps_search_msg" >
+    <% unless @rp.nil? %>
+      <%= pluralize(@rp.size, "person") %> inquired about this
+      property between <%= @s.strftime(@time_string) %> and <%=
+        @e.strftime(@time_string) %>.
+    <% else %>
+      No inquiries made between <%= @s.strftime(@time_string) %> and <%=
+        @e.strftime(@time_string) %>.
+    <% end %> 
+  </div>
+
+  <div id="recent_peeps" style="margin-top: 12px;">
+    <% unless @rp.nil? %>
+      <% @rp.each do |p| %>
+        <%= render :partial => 'recent_person', :locals => {:p => p} %> 
+      <% end %> 
+    <% end %>
+  </div>
+</div>
+
+<div id="recent_people_msg_box" >
+<% unless @rp.nil? %>
+
+  <div class="helper_text" style="margin-bottom:15px;">
+    This message will get send to the people listed above.
+  </div>
+
+  <div class="detail_text">
+    You have used <span id="counter">...</span> characters.
+  </div>
+  <% form_tag ({:action => 'msg_recent_people',
+  :apt => @apartment, :s => @s.utc, :e => @e.utc}) do -%>
+    <%= text_area_tag :message, nil, :rows => 5, :cols => 40 %>
+    <br/>
+    <%= submit_tag 'send' %>
+  <% end -%>
+  <%= count_field('message','counter') %>
+  <br/>
+<% end %>
+</div>
+
+
+
+
+

@@ -1,0 +1,60 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'Back', :back %>
+</div>
+
+<h1>Editing property</h1>
+
+<% form_for(@apartment) do |f| %>
+  <% unless @apartment.errors.empty? %>
+    <div class="errorExplanation" id="errorExplanation">
+      <h2>Please fix the problems with this propery.</h2>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+
+  <p>
+    <% f.fields_for :keyword do |k| %>
+      <%= k.label :value, "Keyword" %><br />
+      <%= k.text_field :value %>
+    <% end %>
+  </p>
+
+  <div class="form_element">
+    <%= f.check_box :pcb_disabled,  
+    :onClick => visual_effect(:toggle_slide, "pics_input", :duration => 0.2) %>
+    <%= f.label :pcb_disabled, "disable pictures and call back requests" %>
+    <div class="helper_text">
+      This will turn off the ability of the texter to
+      request pictures or a call back. 
+    </div>
+  </div>
+
+  <div id="pics_input" style="<%="display:none;" if @apartment.pcb_disabled %>">
+  <div class="form_element">
+    <span>Pictures</span><br />
+    <% f.fields_for :pics do |builder| %>
+      <%= render 'pic_fields', :f => builder %> 
+    <% end %>
+    <div>
+      <%= link_to_add_fields "add pic", f, :pics %>
+    </div>
+  </div>
+  </div>
+
+  <div class="form_element">
+    <%= f.submit 'Update', :class => "submit_button" %>
+  </div>
+  <div class="form_element">
+    <div class="danger_button">
+    <%= link_to 'Delete', @apartment, :confirm => 
+    'Are you sure?', :method => :delete%> 
+    </div>
+  </div>
+<% end %>
+

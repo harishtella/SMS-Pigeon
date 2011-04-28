@@ -1,0 +1,22 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'New list', new_list_path %>
+</div>
+
+<h1>Lists</h1>
+
+<% @lists.each do |l| %>
+  <div class="apt">
+    <div class="small_header">
+      keyword: <%= link_to l.keyword, l%>
+    </div>
+    <div class="apt_add">
+      <%= l.name %>
+    </div>
+    <div style="font-size:12px">
+      <i><%= l.description %></i>
+    </div>
+  </div>
+<% end %>
+

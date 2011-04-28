@@ -1,0 +1,27 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Admin page", :controller => "admin", :action => "index" %>
+</div>
+
+<h1>Changing modem number</h1>
+
+<p>
+  <b>old number:</b>
+  <%= @current_number %>
+</p>
+
+<% form_tag :action => 'change_modem_number' do %>
+
+  <div class="form_element">
+    <b><%= label_tag :number, "new number: " %></b>
+    <%= text_field_tag :number, @new_number %>
+    <div class="helper_text">
+      Enter 11 digit number like: "12174447777" 
+      <br/>
+      Do not include any extra characters, only numbers
+    </div>
+  </div>
+
+  <%= submit_tag 'change number' %>
+<% end %>

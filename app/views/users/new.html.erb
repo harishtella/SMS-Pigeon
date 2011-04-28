@@ -1,0 +1,56 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'Back', :back %>
+</div>
+
+<h1>New user</h1>
+
+<% form_for(@user) do |f| %>
+  <% unless @user.errors.empty? %>
+    <div class="errorExplanation" id="errorExplanation">
+      <h2>Please fix the problems with this user.</h2>
+    </div>
+  <% end %>
+
+  <div class="form_element">
+    <%= f.label :number %><br />
+    <%= text_field_tag "num1", nil, :size => 3,
+    :maxlength => 3 %> -
+    <%= text_field_tag "num2", nil, :size => 3,
+    :maxlength => 3 %> -
+    <%= text_field_tag "num3", nil, :size => 4,
+    :maxlength => 4 %>
+    <% if @user.errors.on(:number) %>
+      <% @user.errors.on(:number).each do |e|%>
+        <span class="validation-error"><%= e %></span>
+      <% end %>
+    <% end %>
+    <div class="helper_text">
+      Enter number like "217-333-4444"
+    </div>
+  </div>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :apartment_id %><br />
+    <%= f.collection_select :apartment_id, Apartment.all, 
+    :id, :address, options = {:prompt => 
+    "none"}%>
+  </p>
+
+  <p>
+    <%= f.label :room, "Room Number" %><br />
+    <%= f.text_field :room%>
+  </p>
+
+  <div class="form_element">
+    <%= f.submit 'Create', :class => "submit_button" %>
+  </div>
+<% end %>
+
+

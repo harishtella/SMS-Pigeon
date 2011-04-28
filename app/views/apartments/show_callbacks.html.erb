@@ -1,0 +1,30 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Property listing", apartments_path %>
+  |
+  <%= link_to "Back", :back %>
+</div>
+
+<div class="header">
+  <span class="title">
+    <%=h @apartment.address %>
+  </span>
+  <h3>
+    callback requests
+  </h3>
+</div>
+
+
+<% unless @apartment.callbacks_all_ordered.empty? %>
+  <div id="callback_requests">
+  <div>
+    <% @apartment.callbacks_all_ordered.each do |cb| %>
+      <div id="cb_<%=cb.id.to_s%>">
+        <%= render :partial => 'callback', :locals => {:cb => cb} %> 
+      </div>
+    <% end %> 
+  </div>
+  </div>
+<% end %>
+

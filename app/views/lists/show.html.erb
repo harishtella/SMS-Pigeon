@@ -1,0 +1,56 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to "Other lists", lists_path %>
+  |
+  <%= link_to "Add user to list", user_list_for_add_path %>
+</div>
+
+<div class="header">
+  <span class="title">
+    <%=h @list.name%> 
+  </span>
+  <span class="edit_link">
+    (<%= link_to 'edit', edit_list_path(@list) %>)
+  </span>
+</div>
+
+
+<%=h @list.description%> 
+<p>
+  <b>Keyword:</b>
+  <%=h @list.keyword %>
+  <br/>
+</p>
+
+<%= link_to_function ("send new message to subscribers",
+visual_effect(:toggle_slide, "new_message_form", :duration => 0.2)) %>
+
+
+<div id="new_message_form" style="display:none;">
+<div>
+  <br/>
+  <% form_for @new_message, :url => new_list_message_path(@list) do |s| %>
+    <%= s.text_area :value, :rows => 5 %>
+    <br/>
+    <%= s.submit 'send message' %>
+  <% end %>
+  <br/>
+</div>
+</div>
+
+
+
+
+<h4>Subscribers</h4>
+<% @list.subscribers.each do |s| %>
+  <div class="user">
+    <span style="font-size: 16px;">
+      <%= s.name_string %>
+      (<%= link_to "remove", remove_user_from_list_path(:user_id => s, 
+      :list_id => @list)%>)
+    </span>
+    <br/>
+    <%=link_to s.number_string, s %>
+  </div>
+<% end %>

@@ -1,0 +1,42 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'Back', :back %>
+</div>
+
+<h1>Editing poll</h1>
+
+<% form_for(@poll) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <% f.fields_for :keyword do |k| %>
+      <%= k.label :value, "Keyword" %><br />
+      <%= k.text_field :value %>
+    <% end %>
+  </p>
+  <p>
+    <% f.fields_for :questions do |builder| %>
+      <%= render 'question_fields', :f => builder %> 
+    <% end %>
+    <p>
+      <%= link_to_add_fields "Add Question", f, :questions %>
+    </p>
+  </p>
+
+  <div class="form_element">
+    <%= f.submit 'Update', :class => "submit_button" %>
+  </div>
+  <div class="form_element">
+    <div class="danger_button">
+    <%= link_to 'Delete', @poll, :confirm => 
+    'Are you sure?', :method => :delete%> 
+    </div>
+  </div>
+<% end %>
+
+

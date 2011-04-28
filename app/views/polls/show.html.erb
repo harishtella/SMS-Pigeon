@@ -1,0 +1,50 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'Polls Listing', polls_path %> 
+</div>
+
+
+<div> 
+  <span class="title">
+    <%=h @poll.title %>
+  </span>
+  <span class="edit_link">
+    (<%= link_to 'edit', edit_poll_path(@poll) %>)
+  </span>
+</div>
+
+
+<p>
+  <b>Keyword:</b>
+  <%=h @poll.keyword %>
+</p>
+
+<% unless @poll.questions.empty? %>
+  <% @poll.questions.each do |q| %>
+      <div class="question">
+        <span style="font-style: italic;">Question: </span><%= q.value %>
+        <%= link_to_function ("show graph", visual_effect(:toggle_slide,
+        "question" + q.id.to_s + "_graph", :duration => 0.2)) %>
+        <div class="ques_choices">
+          <% unless q.choices.empty? %>
+            <% q.choices.each do |c| %>
+              <span style="font-style: italic;">
+                <%= c.keyword %>:     (<%= c.votes.count %> votes)
+              </span> 
+              <br/>
+              <div class="ques_choice_val">
+                <%= c.value %>
+              </div>
+            <% end %> 
+          <% end %> 
+        </div>
+      </div>
+      <div id="<%= "question" + q.id.to_s + "_graph" %>" style="display:none;">
+        <%= image_tag "graphs/" + q.id.to_s + ".png" %> 
+      </div>
+  <% end %> 
+<% end %>
+
+
+

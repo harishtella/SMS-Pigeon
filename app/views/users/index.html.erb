@@ -1,0 +1,38 @@
+<div id="nav">
+  <%= link_to "Home", root_url %>
+  |
+  <%= link_to 'New user', new_user_path %>
+</div>
+
+<h1>Users</h1>
+
+<h3><%= @users.size %> users
+<% if @searching %>
+  (<%= link_to "clear search", users_path %>)
+<% end %>
+</h3>
+
+<div id="user_search">
+  <% form_tag(users_path, :method => 'get') do %>
+    <div style="padding-bottom: 4px">
+      <%= label_tag 'search', 'search by: ' %>
+      <%= label_tag 'search_type_name', 'name' %>
+      <%= radio_button_tag 'search_type', 'name', @name_selected %>
+      <%= label_tag 'search_type_phone', 'phone #' %>
+      <%= radio_button_tag 'search_type', 'phone', (not @name_selected) %>
+    </div>
+    <div>
+      <%= text_field_tag 'search', params[:search] %>
+      <%= submit_tag 'Search', :name => nil %>
+    </div>
+  <% end %>
+</div>
+
+<% @users.each do |u| %>
+  <div class="user">
+    <span style="font-size: 16px;"><%= u.name_string %></span>
+    <%=link_to u.number_string, u %>
+  </div>
+<% end %>
+
+
