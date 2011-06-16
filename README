@@ -4,6 +4,9 @@ a rails app that interfaces with the Kannel SMS Gateway
 
 ## Usage
 
+at command line perform:
+
+rake db:migrate
 script/server
 
 ## License
