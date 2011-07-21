@@ -94,7 +94,7 @@ class AdminController < ApplicationController
         @current_number = Modem.read_current_number
       rescue Exception => e
         @current_number = "???"
-        flash[:error] = "Error retrieving current phone number. Trying to set new
+        flash.now[:error] = "Error retrieving current phone number. Trying to set new
         number will not work."
         puts "\n"
         puts e.inspect

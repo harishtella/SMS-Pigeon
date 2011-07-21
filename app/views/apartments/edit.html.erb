@@ -4,25 +4,25 @@
   <%= link_to 'Back', :back %>
 </div>
 
-<h1>Editing property</h1>
+<h1>Editing keyword</h1>
 
 <% form_for(@apartment) do |f| %>
   <% unless @apartment.errors.empty? %>
     <div class="errorExplanation" id="errorExplanation">
-      <h2>Please fix the problems with this propery.</h2>
+      <h2>Please fix the problems with this keyword.</h2>
     </div>
   <% end %>
-
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </p>
 
   <p>
     <% f.fields_for :keyword do |k| %>
       <%= k.label :value, "Keyword" %><br />
       <%= k.text_field :value %>
     <% end %>
+  </p>
+
+  <p>
+    <%= f.label :address, "Description"%><br />
+    <%= f.text_field :address %>
   </p>
 
   <div class="form_element">

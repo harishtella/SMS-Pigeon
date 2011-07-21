@@ -4,34 +4,34 @@
   <%= link_to 'Back', :back %>
 </div>
 
-<h1>New property</h1>
+<h1>New keyword</h1>
 
 <% form_for(@apartment) do |f| %>
   <% unless @apartment.errors.empty? %>
     <div class="errorExplanation" id="errorExplanation">
-      <h2>Please fix the problems with this propery.</h2>
+      <h2>Please fix the problems with this keyword.</h2>
     </div>
   <% end %>
 
-
-  <div>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %><br />
-  </div>
-      
-  <div class="form_element">
+ <div class="form_element">
     <% f.fields_for :keyword do |k| %>
       <%= k.label :value, "Keyword" %><br />
       <%= k.text_field :value %>
     <% end %>
     <div class="helper_text">
       Texting in this keyword will give the sender 
-      information about this property.
+      this keyword's current status.
     </div>
   </div>
 
+  <div>
+    <%= f.label :address, "Description" %><br />
+    <%= f.text_field :address %><br />
+  </div>
+      
+ 
   <div class="form_element">
-    <%= f.check_box :pcb_disabled,  
+    <%= f.check_box :pcb_disabled, :checked => true,   
     :onClick => visual_effect(:toggle_slide, "pics_input", :duration => 0.2) %>
     <%= f.label :pcb_disabled, "disable pictures and call back requests" %>
     <div class="helper_text">
@@ -52,7 +52,7 @@
     </div>
     <div class="helper_text">
       These picture urls will get sent when the 
-      texter requests pictures of this property.
+      texter requests pictures for this keyword.
     </div>
   </div>
   </div>
@@ -63,7 +63,7 @@
       <%= s.text_area :message , :rows => 5 %>
     <% end %>
     <div class="helper_text">
-      This status will get sent out when this property's
+      This status will get sent out when this 
       keyword is texted in. 
     </div>
   </div>
