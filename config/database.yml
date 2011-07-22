@@ -16,11 +16,8 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
-  encoding: utf8
-  database: cpmtxt
+  adapter: sqlite3
+  database: db/production.sqlite3
   pool: 5
-  username: 
-  password: 
-  socket: /tmp/mysql.sock
-  host: 127.0.0.1
+  timeout: 5000
+
