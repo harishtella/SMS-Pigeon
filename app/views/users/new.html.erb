@@ -36,18 +36,6 @@
     <%= f.text_field :name %>
   </p>
 
-  <p>
-    <%= f.label :apartment_id %><br />
-    <%= f.collection_select :apartment_id, Apartment.all, 
-    :id, :address, options = {:prompt => 
-    "none"}%>
-  </p>
-
-  <p>
-    <%= f.label :room, "Room Number" %><br />
-    <%= f.text_field :room%>
-  </p>
-
   <div class="form_element">
     <%= f.submit 'Create', :class => "submit_button" %>
   </div>
