@@ -154,7 +154,7 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.save
-        flash[:notice] = 'Apartment was successfully created.'
+        flash[:notice] = 'Keyword was successfully created.'
         format.html { redirect_to(@apartment) }
       else
         format.html { render :action => "new" }
@@ -167,7 +167,7 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.update_attributes(params[:apartment])
-        flash[:notice] = 'Apartment was successfully updated.'
+        flash[:notice] = 'Keyword was successfully updated.'
         format.html { redirect_to(@apartment) }
       else
         format.html { render :action => "edit" }
