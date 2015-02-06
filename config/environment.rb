@@ -18,7 +18,7 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
-  config.gem "calendar_date_select"
+  config.gem "calendar_date_select", :version => '1.16.4'
   config.gem "ar-extensions"
   
 
